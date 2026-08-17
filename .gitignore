@@ -6,7 +6,6 @@ NIOSH-QWL_module-years-only.csv
 # --- アプリが使わない中間データ ---
 # app.py は gss_qwl.db を読む。CSV は db が無いときのフォールバックなので不要
 gss_qwl_recent_subset.csv
-gss_qwl_2018_2022_subset.csv
 
 # --- 回答データ（実名を含みうるのでコミットしない） ---
 # サンプル（sample_responses.csv）は氏名がダミーなので対象外
@@ -29,4 +28,3 @@ analysis-design-summary.md
 analysis-design-summary_2002-2014.md
 NIOSH-QWL_variable_labels.csv
 extract_qwl_subset.py
-import pyreadstat.py
