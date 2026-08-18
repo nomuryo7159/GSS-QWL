@@ -68,14 +68,16 @@ CEILING = {"train": 1, "wrktime_r": 4, "suphelp_r": 4, "promteok_r": 4}
 NAME_COL = "name"           # 氏名（必須）
 CLOSE_MARGIN = 0.05         # 1位と2位の寄与度差がこれ未満なら「実質同順位」として併記する
 
-# 画面に出る予測満足度のすべての箇所で使い回す説明。
-PRED_HELP = (
-    "同じ4つの回答をした人たちの、満足度の平均値。\n\n"
-    "- 4：とても満足\n"
-    "- 3：やや満足\n"
-    "- 2：あまり満足していない\n"
-    "- 1：まったく満足していない"
+# 画面に出る予測満足度の説明。1人ぶんの値（PRED_HELP）と、
+# それを読み込んだ人数ぶん平均した値（AVG_PRED_HELP）は別物なので、説明も分ける。
+SCALE_HELP = (
+    "\n\n- 4：とても満足"
+    "\n- 3：やや満足"
+    "\n- 2：あまり満足していない"
+    "\n- 1：まったく満足していない"
 )
+PRED_HELP = "同じ4つの回答をした人たちの、満足度の平均値。" + SCALE_HELP
+AVG_PRED_HELP = "読み込んだ全員の予測満足度を、さらに平均した値。" + SCALE_HELP
 HIGH_SAT_HELP = "同じ4つの回答をした人たちのうち、「4：とても満足」と答えた人の割合。"
 
 st.set_page_config(page_title="職場ボトルネック診断", page_icon="🧭", layout="wide")
@@ -314,7 +316,7 @@ if mode.startswith("🏢"):
 
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("対象者", f"{len(table)}人")
-    c2.metric("平均予測満足度", f"{table['予測満足度'].mean():.2f}", help=PRED_HELP)
+    c2.metric("平均予測満足度", f"{table['予測満足度'].mean():.2f}", help=AVG_PRED_HELP)
     c3.metric("2モデルが一致", f"{(table['2モデルの一致'] == '○').mean():.0%}")
     c4.metric(
         "上位2つが僅差",
