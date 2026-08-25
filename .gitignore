@@ -23,9 +23,11 @@ venv/
 
 # --- 分析・作業用（アプリの実行には不要なので公開しない） ---
 # ファイルはローカルに残るが、リポジトリには含めない
-main.ipynb
+GSS_main.ipynb
 analysis-design-summary.md
 analysis-design-summary_2002-2014.md
 NIOSH-QWL_variable_labels.csv
 extract_qwl_subset.py
 analysis-design-summary_section4_revised.md
+# --- 出力画像（ノートブックから再生成できるのでコミットしない） ---
+*.png
